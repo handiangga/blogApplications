@@ -1,0 +1,34 @@
+{
+  "name": "blogapplications",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/handiangga/blogApplications.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/handiangga/blogApplications/issues"
+  },
+  "homepage": "https://github.com/handiangga/blogApplications#readme",
+  "dependencies": {
+    "apollo-server": "^3.5.0",
+    "axios": "^0.24.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "graphql": "^15.7.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.2.1",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
