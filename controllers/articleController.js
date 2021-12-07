@@ -35,6 +35,7 @@ class ArticleController {
         body: req.body.body,
         time: time,
         image: req.body.image,
+        Comments: [],
       };
       let data = await Article.addArticle(payload);
       res.status(201).json(data);

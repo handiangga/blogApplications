@@ -25,7 +25,8 @@ class CommentController {
       next(error);
     }
   }
-  static async addArticle(req, res, next) {
+  static async addComment(req, res, next) {
+    
     try {
       let time = new Date();
       let payload = {
