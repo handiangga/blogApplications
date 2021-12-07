@@ -7,11 +7,9 @@ async function authentication(req, res, next) {
   if (access_token) {
     try {
       const decoded = jwtVerify(access_token);
-      console.log(decoded);
       const user = await getDatabase()
         .collection("Users")
         .findOne({ _id: ObjectId(decoded._id) });
-      console.log(user);
       if (user) {
         req.user = {
           id: user._id,

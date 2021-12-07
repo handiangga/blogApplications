@@ -30,7 +30,7 @@ class ArticleController {
       let time = new Date();
       let payload = {
         title: req.body.title,
-        authors: req.body.authors,
+        authors: req.user.id,
         tags: req.body.tags,
         body: req.body.body,
         time: time,
