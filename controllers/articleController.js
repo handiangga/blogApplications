@@ -27,38 +27,59 @@ class ArticleController {
   }
   static async addArticle(req, res, next) {
     try {
+      let time = new Date();
       let payload = {
         title: req.body.title,
-        overview: req.body.overview,
-        poster_path: req.body.poster_path,
-        popularity: req.body.popularity,
+        authors: req.body.authors,
         tags: req.body.tags,
+        body: req.body.body,
+        time: time,
+        image: req.body.image,
       };
       let data = await Article.addArticle(payload);
       res.status(201).json(data);
     } catch (error) {
-      res.status(400).json(error);
+      next(error);
     }
   }
-  static async editArticle(req, res, next) {
+  static async updateArticle(req, res, next) {
     try {
+      let time = new Date();
       let payload = {
         title: req.body.title,
-        overview: req.body.overview,
-        poster_path: req.body.poster_path,
-        popularity: req.body.popularity,
+        authors: req.body.authors,
         tags: req.body.tags,
+        body: req.body.body,
+        time: time,
+        image: req.body.image,
       };
-      let data = await Article.editArticle(payload, req.params.id);
-      res.status(201).json(data);
+      let findArticle = await Article.findById(req.params.id);
+      if (findArticle.name === "Error") {
+        next({
+          name: "notFound",
+          message: "data not found",
+        });
+      } else {
+        let data = await Article.editArticle(payload, req.params.id);
+        res.status(201).json(data);
+      }
     } catch (error) {
-      res.status(400).json(error);
+      console.log(error);
+      next(error);
     }
   }
   static async deleteArticle(req, res, next) {
     try {
-      let data = await Article.deleteArticle(req.params.id);
-      res.status(201).json(data);
+      let findArticle = await Article.findById(req.params.id);
+      if (findArticle.name === "Error") {
+        next({
+          name: "notFound",
+          message: "data not found",
+        });
+      } else {
+        let data = await Article.deleteArticle(req.params.id);
+        res.status(201).json(data);
+      }
     } catch (error) {
       res.status(400).json(error);
     }

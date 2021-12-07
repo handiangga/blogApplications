@@ -3,13 +3,13 @@ const { ObjectId } = require("bson");
 
 class Article {
   static findAll() {
-    return getDatabase().collection("Article").find().toArray();
+    return getDatabase().collection("Articles").find().toArray();
   }
 
   static async findById(id) {
     try {
       let data = await getDatabase()
-        .collection("Article")
+        .collection("Articles")
         .find({ _id: ObjectId(id) })
         .toArray();
       return data;
@@ -22,25 +22,17 @@ class Article {
   }
 
   static addArticle(payload) {
-    return getDatabase().collection("Article").insertOne(payload);
+    return getDatabase().collection("Articles").insertOne(payload);
   }
-
-  static editMovie(payload, id) {
+  static editArticle(payload, id) {
     return getDatabase()
-      .collection("Article")
-      .updateOne(
-        {
-          _id: ObjectId(id),
-        },
-        {
-          $set: payload,
-        }
-      );
+      .collection("Articles")
+      .updateOne({ _id: ObjectId(id) }, { $set: payload });
   }
 
   static deleteArticle(id) {
     return getDatabase()
-      .collection("Article")
+      .collection("Articles")
       .deleteOne({ _id: ObjectId(id) });
   }
 }
