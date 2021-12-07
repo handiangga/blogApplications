@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const articleRouters = require("./article");
-// const tvSeriesRouters = require("./tvSeries");
+const commentRouters = require("./comment");
 
 router.use("/article", articleRouters);
-// router.use("/tv-series", tvSeriesRouters);
+router.use("/comment", commentRouters);
 
 module.exports = router;
